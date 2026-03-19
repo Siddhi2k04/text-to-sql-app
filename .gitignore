@@ -1,4 +1,6 @@
 venv/
-.env
+venv310/
 __pycache__/
 *.pyc
+.env
+database/db.sqlite
