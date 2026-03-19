@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 from utils.llm import generate_sql
@@ -12,8 +13,8 @@ user_input = st.text_input("Ask your question:")
 if st.button("Generate SQL"):
 
     # Generate SQL
-    sql_query = generate_sql(user_input)
-
+    with st.spinner("🤖 Generating SQL... Please wait..."):
+         sql_query = generate_sql(user_input)    
     st.subheader("Generated SQL:")
     st.code(sql_query, language="sql")
 
