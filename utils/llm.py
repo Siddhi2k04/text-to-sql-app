@@ -2,11 +2,11 @@ def generate_sql(user_input):
     user_input = user_input.lower()
     words = user_input.split()
 
-    # 🚨 Safety
+    
     if any(word in words for word in ["drop", "delete", "update"]):
         return None
 
-    # 🔗 JOIN
+    # JOIN
     if "customer" in words and "order" in words:
         return """
         SELECT customers.name, orders.amount, orders.date
@@ -14,7 +14,7 @@ def generate_sql(user_input):
         JOIN orders ON customers.id = orders.customer_id;
         """
 
-    # 👤 CUSTOMERS (CHECK FIRST!)
+    # CUSTOMERS
     if "customers" in words or "customer" in words:
 
         if "id" in words:
@@ -28,7 +28,7 @@ def generate_sql(user_input):
 
         return "SELECT * FROM customers;"
 
-    # 📦 ORDERS
+    # ORDERS
     if "orders" in words or "order" in words:
 
         conditions = []
