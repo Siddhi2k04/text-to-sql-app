@@ -4,6 +4,8 @@ from utils.llm import generate_sql
 from utils.db import run_query
 import os
 
+st.write("DEPLOY TEST V2")
+
 # Create DB if not exists
 if not os.path.exists("database/db.sqlite"):
     import subprocess
