@@ -13,7 +13,7 @@ def generate_sql(user_input):
     if any(word in user_input for word in ["drop", "delete", "update"]):
      return None
 
-    # 🔥 JOIN (highest priority)
+    # JOIN
     if "customer" in user_input and "order" in user_input:
         return """
         SELECT customers.name, orders.amount, orders.date
@@ -21,7 +21,7 @@ def generate_sql(user_input):
         JOIN orders ON customers.id = orders.customer_id;
         """
 
-    # 🔥 ORDERS
+    # ORDERS
     if "order" in user_input:
 
         words = user_input.split()
@@ -43,7 +43,7 @@ def generate_sql(user_input):
                             conditions.append(f"customer_id = {words[j]}")
                             break
 
-        # 🔥 date column selection
+        # date column selection
         if "date" in user_input:
             return "SELECT id, customer_id, amount, date FROM orders;"
 
@@ -52,7 +52,7 @@ def generate_sql(user_input):
 
         return "SELECT * FROM orders;"
 
-    # 🔥 CUSTOMERS
+    # CUSTOMERS
     if "customer" in user_input:
 
         words = user_input.split()
@@ -67,7 +67,7 @@ def generate_sql(user_input):
         if "mumbai" in user_input:
             return "SELECT * FROM customers WHERE city = 'Mumbai';"
 
-        return "SELECT * FROM customers;"
+        
 
-    # 🔥 FINAL FALLBACK (VERY IMPORTANT)
+    return "SELECT * FROM customers;"
     return "SELECT * FROM orders;"

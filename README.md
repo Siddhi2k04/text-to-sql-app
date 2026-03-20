@@ -1,44 +1,105 @@
-# 🧠 Text-to-SQL Web App
+# 🧠 Text-to-SQL App
 
-A web-based application that converts natural language queries into SQL and executes them on a database in real-time.
+A simple AI-powered application that converts natural language queries into SQL and executes them on a SQLite database using Streamlit.
+
+---
 
 ## 🚀 Features
 
-* Convert plain English to SQL queries
-* Supports filtering (id, city, amount)
-* Handles multiple conditions
-* JOIN queries between tables
-* Safe query execution (prevents harmful SQL)
-* Interactive UI using Streamlit
+* Convert plain English into SQL queries
+* Execute queries on a structured database
+* Display results in a clean table format
+* Built-in safety checks to block destructive queries (DROP, DELETE, UPDATE)
+* Handles filtering conditions like:
 
-## 🛠️ Tech Stack
+  * customer id
+  * city
+  * order amount
+
+---
+
+## 🛠 Tech Stack
 
 * Python
-* SQLite
 * Streamlit
-* Transformers (HuggingFace)
+* SQLite
+* Pandas
 
-## 📌 Example Queries
+---
 
-* show all customers
-* show customer with id 1
-* show orders above 5000
-* show orders for customer id 1
-* show customers with their orders
+## 📂 Project Structure
 
-## 📷 Screenshots
+text-to-sql-app/
+│
+├── app.py
+├── utils/
+│   ├── db.py
+│   ├── llm.py
+│
+├── database/
+│   ├── db.sqlite
+│   ├── init_db.py
+│
+├── screenshots/
+├── requirements.txt
+├── README.md
 
-(Add your screenshots here)
+---
 
-## ⚙️ How to Run
+## ▶️ How to Run
+
+1. Clone the repository
+
+```bash
+git clone <your-repo-link>
+cd text-to-sql-app
+```
+
+2. Create virtual environment
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
+```
+
+4. Initialize database
+
+```bash
+python database/init_db.py
+```
+
+5. Run the app
+
+```bash
 streamlit run app.py
 ```
 
+
+## ⚠️ Safety Feature
+
+The app prevents execution of destructive queries such as:
+
+* DROP
+* DELETE
+* UPDATE
+
+---
+
 ## 💡 Future Improvements
 
-* Add support for more complex SQL queries
-* Improve LLM accuracy
-* Deploy as a web app
+* Integrate real LLM (OpenAI / HuggingFace)
+* Add JOIN automation
+* Improve query understanding
+* Add authentication
+
+---
+
+## 👩‍💻 Author
+
+Siddhi Bhalekar

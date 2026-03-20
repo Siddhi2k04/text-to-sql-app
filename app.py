@@ -18,37 +18,37 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 🔥 App Title
+# App Title
 st.title("🧠 Text to SQL App")
 
-# 🔥 User Input
+# User Input
 user_input = st.text_input("Ask your question:")
 
-# 🔥 Button Click
+# Button Click
 if st.button("Generate SQL"):
 
-    # 🚨 Handle empty input
+    # Handle empty input
     if not user_input.strip():
         st.warning("⚠️ Please enter a question.")
         st.stop()
 
-    # 🔥 Generate SQL with loading spinner
+    # Generate SQL with loading spinner
     with st.spinner("🤖 Generating SQL... Please wait..."):
         sql_query = generate_sql(user_input)
 
-    # 🚨 Safety fallback (VERY IMPORTANT)
+    # Safety fallback (VERY IMPORTANT)
     if not sql_query:
         sql_query = "SELECT * FROM orders;"
 
-    # 🔥 Show SQL
+    # Show SQL
     st.subheader("Generated SQL:")
     st.code(sql_query, language="sql")
 
-    # 🚨 Prevent dangerous queries
+    # Prevent dangerous queries
     if any(word in sql_query.lower() for word in ["drop", "delete", "update"]):
-        st.error("⚠️ Unsafe query detected!")
+        st.error("Unsafe query detected!")
     if not sql_query:
-     st.error("⚠️ Invalid or unsafe query!")
+     st.error("Invalid or unsafe query!")
     
     else:
         try:
@@ -57,13 +57,13 @@ if st.button("Generate SQL"):
             st.subheader("Results:")
 
             if results:
-                # 🔥 Fix: ensure results is list of rows
+                # ensure results is list of rows
                 if isinstance(results[0], (int, str)):
                     results = [results]
 
                 df = pd.DataFrame(results)
 
-                # Convert all to string (avoids pyarrow errors)
+                # Convert all to string
                 df = df.astype(str)
 
                 # Assign column names if matching
@@ -76,4 +76,4 @@ if st.button("Generate SQL"):
                 st.info("No results found.")
 
         except Exception as e:
-            st.error(f"❌ Error: {e}")
+            st.error(f"Error: {e}")

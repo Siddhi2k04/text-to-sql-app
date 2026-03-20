@@ -3,11 +3,11 @@ import sqlite3
 conn = sqlite3.connect("database/db.sqlite")
 cursor = conn.cursor()
 
-# 🔥 Drop tables (reset)
+# Drop tables
 cursor.execute("DROP TABLE IF EXISTS customers")
 cursor.execute("DROP TABLE IF EXISTS orders")
 
-# 🔥 Create tables
+# Create tables
 cursor.execute("""
 CREATE TABLE customers (
     id INTEGER PRIMARY KEY,
@@ -25,7 +25,7 @@ CREATE TABLE orders (
 )
 """)
 
-# 🔥 Insert customers
+# Insert customers
 customers_data = [
     (1, "Amit", "Mumbai"),
     (2, "Priya", "Pune"),
@@ -41,7 +41,7 @@ customers_data = [
 
 cursor.executemany("INSERT INTO customers VALUES (?, ?, ?)", customers_data)
 
-# 🔥 Insert orders
+# Insert orders
 orders_data = [
     (1, 1, 2500, "2024-01-01"),
     (2, 2, 6000, "2024-01-05"),
@@ -65,4 +65,4 @@ cursor.executemany("INSERT INTO orders VALUES (?, ?, ?, ?)", orders_data)
 conn.commit()
 conn.close()
 
-print("✅ Database initialized!")
+print("Database initialized!")
