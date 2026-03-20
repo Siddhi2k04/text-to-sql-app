@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 from utils.llm import generate_sql
 from utils.db import run_query
+import os
+
+# Create DB if not exists
+if not os.path.exists("database/db.sqlite"):
+    import subprocess
+    subprocess.run(["python", "database/init_db.py"])
 
 st.markdown("""
     <style>
