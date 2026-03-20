@@ -27,7 +27,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # App Title
-st.title("🧠 Text to SQL App")
+st.title("Text to SQL App")
 
 # User Input
 user_input = st.text_input("Ask your question:")

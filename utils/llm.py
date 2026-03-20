@@ -33,11 +33,18 @@ def generate_sql(user_input):
 
         conditions = []
 
+        # amount filter
+    for i, word in enumerate(words):
+     if word.isdigit():
+        number = word
+
         if "above" in words or "greater" in words:
-            for word in words:
-                if word.isdigit():
-                    conditions.append(f"amount > {word}")
-                    break
+            conditions.append(f"amount > {number}")
+
+        elif "below" in words or "less" in words:
+            conditions.append(f"amount < {number}")
+
+        break
 
         if "customer" in words and "id" in words:
             for i, word in enumerate(words):
