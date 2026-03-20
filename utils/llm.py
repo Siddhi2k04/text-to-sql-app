@@ -1,17 +1,9 @@
-from transformers import pipeline
-
-generator = None
-
-def load_model():
-    global generator
-    if generator is None:
-        generator = pipeline("text-generation", model="google/flan-t5-base")
-
 def generate_sql(user_input):
     user_input = user_input.lower()
 
+    # Block unsafe queries
     if any(word in user_input for word in ["drop", "delete", "update"]):
-     return None
+        return None
 
     # JOIN
     if "customer" in user_input and "order" in user_input:
@@ -43,7 +35,7 @@ def generate_sql(user_input):
                             conditions.append(f"customer_id = {words[j]}")
                             break
 
-        # date column selection
+        # date selection
         if "date" in user_input:
             return "SELECT id, customer_id, amount, date FROM orders;"
 
@@ -57,6 +49,7 @@ def generate_sql(user_input):
 
         words = user_input.split()
 
+        # id filter
         if "id" in user_input:
             for i, word in enumerate(words):
                 if word == "id":
@@ -64,10 +57,10 @@ def generate_sql(user_input):
                         if words[j].isdigit():
                             return f"SELECT * FROM customers WHERE id = {words[j]};"
 
+        # city filter
         if "mumbai" in user_input:
             return "SELECT * FROM customers WHERE city = 'Mumbai';"
 
-        
+        return "SELECT * FROM customers;"
 
-    return "SELECT * FROM customers;"
-    return "SELECT * FROM orders;"
+    return None
