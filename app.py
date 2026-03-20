@@ -31,6 +31,8 @@ st.title("Text to SQL App")
 # User Input
 user_input = st.text_input("Ask your question:")
 
+st.write("WORDS:", user_input.split())
+
 # Button Click
 if st.button("Generate SQL"):
 

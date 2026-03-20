@@ -1,6 +1,9 @@
 def generate_sql(user_input):
     user_input = user_input.lower()
+    
     words = user_input.split()
+    print("WORDS:", words)
+    print("CONDITIONS:", conditions)
 
     
     if any(word in words for word in ["drop", "delete", "update"]):
