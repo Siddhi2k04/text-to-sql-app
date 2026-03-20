@@ -35,6 +35,7 @@ def generate_sql(user_input):
     if "orders" in words or "order" in words:
 
      conditions = [] 
+     print("CONDITIONS:", conditions)
 
     # extract number
     number = None
