@@ -1,5 +1,8 @@
 # 🧠 Text-to-SQL App
 
+🚀 **Live Demo:** https://text-to-sql-app-aavsvgi5gr5imyjppejujm.streamlit.app
+
+---
 A simple AI-powered application that converts natural language queries into SQL and executes them on a SQLite database using Streamlit.
 
 ---
